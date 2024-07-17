@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+        body {
+            font-size: 14px;
+            font-family: "Roboto", sans-serif;
+        }
+        .login-wrapper {
+            width: 400px;
+            height: auto;
+            padding: 40px;
+            box-sizing: border-box;
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .login-wrapper > h2 {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 20px;
+        }
+        #login-form > input {
+            width: 100%;
+            height: 48px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            background-color: #f8f8f8;
+        }
+        #login-form > input::placeholder {
+            color: #d2d2d2;
+        }
+        #login-form > input[type="button"] {
+            color: black;
+            font-size: 16px;
+            background-color: #b6fb00;
+            margin-top: 20px;
+            justify-content: baseline;
+        }
+        .google-btn {
+          width: 30px;
+          border: 2px solid black;
+          padding: 15px;
+          margin: 5px 20px;
+          border-radius: 60px;
+          justify-content: baseline;
+        }
+        .kakao-btn {
+          color: brown;
+          width: 30px;
+          border: 2px solid black;
+          padding: 15px;
+          margin: 5px 20px;
+          border-radius: 60px;
+          justify-content: center;
+        }
+        .naver-btn {
+          color: brown;
+          width: 30px;
+          border: 2px solid black;
+          padding: 15px;
+          margin: 5px 20px;
+          border-radius: 60px;
+          border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <h2>로그인</h2>
+        <form method="post" action="서버의url" id="login-form">
+            <input id="id" type="text" name="userName" placeholder="이메일" />
+            <input id="pw" type="password" name="userPassword" placeholder="비밀번호" />
+            <input id="r_pw" type="button" value="로그인" onclick="goToPage()" />
+        </form>
+        <img class="google-btn" src="image.png" onclick="window.location.href='https://accounts.google.com/signin'">
+        <img src="image copy.png" class="kakao-btn" id="kakao-login-btn">
+        <img src="image copy 2.png" class="naver-btn" onclick="window.location.href='https://nid.naver.com/nidlogin.login'">
+    </div>
+
+    <!-- 카카오 JavaScript SDK를 로드합니다. -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script>
+        // 카카오 SDK 초기화
+        Kakao.init('YOUR_KAKAO_JAVASCRIPT_KEY'); // 여기에 발급받은 JavaScript 키를 입력하세요.
+
+        // 카카오 로그인 버튼 클릭 이벤트 핸들러
+        document.getElementById('kakao-login-btn').addEventListener('click', function() {
+            Kakao.Auth.authorize({
+                redirectUri: 'YOUR_REDIRECT_URI' // 여기에 리디렉션 URI를 입력하세요.
+            });
+        });
+    </script>
+    <script>
+      function goToPage(){
+        window.open("http://127.0.0.1:5500/%EB%AA%A9%EB%A1%9D/list.html");
+      }
+    </script>
+</body>
+</html>
